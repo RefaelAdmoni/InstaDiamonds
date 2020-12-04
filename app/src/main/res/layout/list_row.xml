@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/row_image_TV"
         android:layout_width="97dp"
         android:layout_height="89dp"
         android:layout_marginStart="16dp"
@@ -18,26 +18,83 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/row_titleName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        android:text="Name: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/row_image_TV"
+        app:layout_constraintTop_toTopOf="@+id/row_image_TV" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/row_DaimondPrice_TV"
+        style="@style/Widget.AppCompat.TextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:text="Price: "
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/row_image_TV"
+        app:layout_constraintStart_toEndOf="@+id/row_image_TV" />
+
+    <TextView
+        android:id="@+id/row_TV_diamondPice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/row_DaimondPrice_TV"
+        app:layout_constraintEnd_toStartOf="@+id/row_checkBox"
+        app:layout_constraintStart_toEndOf="@+id/row_DaimondPrice_TV"
+        app:layout_constraintTop_toTopOf="@+id/row_DaimondPrice_TV"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/row_TV_diamond_Name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="Price: 123456"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/row_titleName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/row_titleName"
+        app:layout_constraintTop_toTopOf="@+id/row_titleName" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
+        android:text="Karats: "
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/row_DaimondPrice_TV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/row_image_TV"
+        app:layout_constraintTop_toBottomOf="@+id/row_titleName" />
+
+    <TextView
+        android:id="@+id/row_TV_diamondKarat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+    <CheckBox
+        android:id="@+id/row_checkBox"
+        android:layout_width="32dp"
+        android:layout_height="26dp"
+        app:layout_constraintBottom_toBottomOf="@+id/row_TV_diamondPice"
+        app:layout_constraintEnd_toEndOf="@+id/row_TV_diamondKarat"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/row_TV_diamondPice"
+        app:layout_constraintTop_toTopOf="@+id/row_TV_diamondPice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

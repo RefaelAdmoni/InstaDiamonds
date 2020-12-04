@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/activity_btn_signIn"
+        android:layout_width="142dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#FFFFFF"
+        android:foregroundGravity="left"
+        android:gravity="left"
+        android:text="Click here ! "
+        android:textColor="#9E2A2A"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+        android:id="@+id/LOGO_InstaDiamonds"
+        android:layout_width="246dp"
         android:layout_height="55dp"
         android:layout_marginStart="150dp"
         android:layout_marginEnd="150dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="40dp"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="InstaDiamonds"
@@ -22,10 +36,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/LOGO_welcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:freezesText="false"
+        android:gravity="center|clip_vertical"
+        android:text="Welcome to"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/LOGO_InstaDiamonds"
+        app:layout_constraintEnd_toEndOf="@+id/LOGO_InstaDiamonds"
+        app:layout_constraintStart_toStartOf="@+id/LOGO_InstaDiamonds" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="243dp"
+        android:layout_height="241dp"
         android:layout_marginStart="200dp"
         android:layout_marginTop="300dp"
         android:layout_marginEnd="200dp"
@@ -36,7 +63,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_login"
             android:layout_width="117dp"
             android:layout_height="55dp"
             android:layout_marginTop="60dp"
@@ -47,18 +74,18 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress2"
+            android:id="@+id/login_input_mail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:autoText="false"
+            android:autoText="true"
             android:ems="10"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:hapticFeedbackEnabled="false"
-            android:hint="E-mail user "
+            android:hint="E-mail"
             android:inputType="textEmailAddress"
             android:scrollbarAlwaysDrawHorizontalTrack="false"
             android:scrollbarAlwaysDrawVerticalTrack="false"
@@ -66,8 +93,10 @@
             android:singleLine="true"
             app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <EditText
             android:id="@+id/editTextTextPassword2"
@@ -78,10 +107,23 @@
             android:gravity="center"
             android:hint="Password"
             android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress2"
+            app:layout_constraintEnd_toEndOf="@+id/login_input_mail"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+            app:layout_constraintStart_toStartOf="@+id/login_input_mail"
+            app:layout_constraintTop_toBottomOf="@+id/login_input_mail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="30dp"
+        android:autoText="false"
+        android:capitalize="words"
+        android:text="Don't have a user yet?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/activity_btn_signIn"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
