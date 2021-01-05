@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/productsListFragment">
+
+    <fragment
+        android:id="@+id/productsListFragment"
+        android:name="com.example.instadiamond.ProductsListFragment"
+        android:label="Product"
+        tools:layout="@layout/fragment_product_list" >
+        <action
+            android:id="@+id/action_productsListFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.example.instadiamond.ProductDetailsFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="product"
+            app:argType="com.example.instadiamond.model.Product" />
+    </fragment>
+</navigation>

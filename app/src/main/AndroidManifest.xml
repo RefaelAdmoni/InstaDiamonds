@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InstaDiamond">
-        <activity android:name=".UserProfile" />
-        <activity android:name=".Wall" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
