@@ -6,6 +6,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.instadiamond.model.Product;
 
@@ -28,7 +29,7 @@ public class HomeActivity extends AppCompatActivity implements ProductsListFragm
 //        NavController navCtrl = Navigation.findNavController(this,R.id.home_nav_host);
 //        navCtrl.navigate(R.id.action_productsListFragment_to_productDetailsFragment);
 
-        //forword args
+        //forward args
 //        ProductsListFragmentDirections.ActionProductsListFragmentToProductDetailsFragment directions = ProductsListFragmentDirections.actionProductsListFragmentToProductDetailsFragment(product);
 //        navCtrl.navigate(directions);
 
@@ -36,4 +37,14 @@ public class HomeActivity extends AppCompatActivity implements ProductsListFragm
         NavGraphDirections.ActionGlobalProductDetailsFragment direction = ProductsListFragmentDirections.actionGlobalProductDetailsFragment(product);
         navCtrl.navigate(direction);
     }
+
+    @Override
+    public boolean onOptionItemSelected(MenuItem item){
+        if(item.getItemId() == android.R.id.home){              //the btn back in nav bar menu calls 'android.R.id.home'
+            navCtrl.navigateUp();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
