@@ -22,5 +22,5 @@
         <argument
             android:name="product"
             app:argType="com.example.instadiamond.model.Product" />
-    </fragment>
+    </fragment><action android:id="@+id/action_global_productDetailsFragment" app:destination="@id/productDetailsFragment"/>
 </navigation>

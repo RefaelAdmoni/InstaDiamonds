@@ -40,7 +40,7 @@
         app:layout_constraintStart_toEndOf="@+id/row_image_TV" />
 
     <TextView
-        android:id="@+id/row_TV_diamondPice"
+        android:id="@+id/row_TV_diamondPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -93,10 +93,10 @@
         android:layout_width="32dp"
         android:layout_height="26dp"
         android:focusable="false"
-        app:layout_constraintBottom_toBottomOf="@+id/row_TV_diamondPice"
+        app:layout_constraintBottom_toBottomOf="@+id/row_TV_diamondPrice"
         app:layout_constraintEnd_toEndOf="@+id/row_TV_diamondCarats"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/row_TV_diamondPice"
-        app:layout_constraintTop_toTopOf="@+id/row_TV_diamondPice" />
+        app:layout_constraintStart_toEndOf="@+id/row_TV_diamondPrice"
+        app:layout_constraintTop_toTopOf="@+id/row_TV_diamondPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

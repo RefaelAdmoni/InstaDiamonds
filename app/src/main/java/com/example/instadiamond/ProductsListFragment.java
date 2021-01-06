@@ -32,7 +32,6 @@ public class ProductsListFragment extends Fragment {
     }
     Delgate parent;
 
-
     public ProductsListFragment() {
         allDataProducts = Model.instance.getAllProducts();                    //getting all the products.
     }
@@ -69,7 +68,6 @@ public class ProductsListFragment extends Fragment {
                 parent.onItemSelected(product);
             }
         });
-
         return view;
     }
 
@@ -89,9 +87,9 @@ public class ProductsListFragment extends Fragment {
 
         public ProductRowViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            name = itemView.findViewById(R.id.row_titleName);
+            name = itemView.findViewById(R.id.row_TV_diamond_Name);
             carat = itemView.findViewById(R.id.row_TV_diamondCarats);
-            price = itemView.findViewById(R.id.row_DaimondPrice_TV);
+            price = itemView.findViewById(R.id.row_TV_diamondPrice);
             cb = itemView.findViewById(R.id.row_checkBox);
             image = itemView.findViewById(R.id.row_image_TV);
             cb.setOnClickListener(new View.OnClickListener() {
