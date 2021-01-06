@@ -1,5 +1,7 @@
 package com.example.instadiamond;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,7 +28,7 @@ public class HomeActivity extends AppCompatActivity implements ProductsListFragm
 
     @Override
     public void onItemSelected(Product product) {
-//        NavController navCtrl = Navigation.findNavController(this,R.id.home_nav_host);
+        navCtrl = Navigation.findNavController(this,R.id.home_nav_host);
 //        navCtrl.navigate(R.id.action_productsListFragment_to_productDetailsFragment);
 
         //forward args
@@ -39,11 +41,22 @@ public class HomeActivity extends AppCompatActivity implements ProductsListFragm
     }
 
     @Override
-    public boolean onOptionItemSelected(MenuItem item){
+    public boolean onOptionItemSelected(MenuItem item) {
+        return false;
+    }
+
+//    @Override
+//    public boolean onOptionItemSelected(MenuItem item) {
+//        return false;
+//    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){              //the btn back in nav bar menu calls 'android.R.id.home'
             navCtrl.navigateUp();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
