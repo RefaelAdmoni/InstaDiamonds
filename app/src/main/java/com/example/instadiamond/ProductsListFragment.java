@@ -176,6 +176,11 @@ public class ProductsListFragment extends Fragment {
             case R.id.menu_product_list_add:
                 Log.d("TAG","fragment handle add menu");
                 return true;
+            case R.id.menu_product_list_info:
+                Log.d("TAG","fragment handle info menu");
+                AlertDialogFragment dialog = AlertDialogFragment.newInstance("Product App Info", "Welcome to the Diamonds app info page...");
+                dialog.show(getParentFragmentManager(),"TAG");
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
