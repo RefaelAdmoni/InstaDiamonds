@@ -175,6 +175,8 @@ public class ProductsListFragment extends Fragment {
         switch (item.getItemId()){
             case R.id.menu_product_list_add:
                 Log.d("TAG","fragment handle add menu");
+                MyDatePickerFragment picker = new MyDatePickerFragment();           //The picker created his fragment
+                picker.show(getParentFragmentManager(),"TAG");
                 return true;
             case R.id.menu_product_list_info:
                 Log.d("TAG","fragment handle info menu");
