@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +46,11 @@ public class ProductsListFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof Delgate){
             parent = (Delgate) getActivity();
-        } else throw new RuntimeException(context.toString()
-                + "must implement Delegate");
+        } else {
+            throw new RuntimeException(context.toString()
+                    + "must implement Delegate");
+        }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -157,5 +162,21 @@ public class ProductsListFragment extends Fragment {
         public int getItemCount() {
             return allDataProducts.size();
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.products_list_menu,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_product_list_add:
+                Log.d("TAG","fragment handle add menu");
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

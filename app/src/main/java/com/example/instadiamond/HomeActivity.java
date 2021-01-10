@@ -8,9 +8,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.instadiamond.model.Product;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity implements ProductsListFragment.Delgate {
     NavController navCtrl;
@@ -24,6 +27,9 @@ public class HomeActivity extends AppCompatActivity implements ProductsListFragm
         navCtrl = Navigation.findNavController(this,R.id.home_nav_host);
         NavigationUI.setupActionBarWithNavController(this,navCtrl);
 
+        //bottom navigation
+        BottomNavigationView bottomNav = findViewById(R.id.home_bottom_nav);
+        NavigationUI.setupWithNavController(bottomNav,navCtrl);
     }
 
     @Override
@@ -40,24 +46,26 @@ public class HomeActivity extends AppCompatActivity implements ProductsListFragm
         navCtrl.navigate(direction);
     }
 
+    //control the action bar btn (add)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+   //     getMenuInflater().inflate(R.menu.products_list_menu,menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionItemSelected(MenuItem item) {
         return false;
     }
 
-//    @Override
-//    public boolean onOptionItemSelected(MenuItem item) {
-//        return false;
-//    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){              //the btn back in nav bar menu calls 'android.R.id.home'
-            navCtrl.navigateUp();
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:                     //the btn back in nav bar menu calls 'android.R.id.home'
+                navCtrl.navigateUp();
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
 }
