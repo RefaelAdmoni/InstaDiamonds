@@ -4,8 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,39 +22,52 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.instadiamond.model.Model;
+import com.example.instadiamond.model.ProductFirebase;
+import com.example.instadiamond.model.ProductModel;
 import com.example.instadiamond.model.Product;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class ProductsListFragment extends Fragment {
-
-    List<Product> allDataProducts;
     RecyclerView prd_List;
+    List<Product> data = new LinkedList<Product>();
+    ProductListAdapter adapter;
+    ProductListViewModel viewModel;
+    LiveData<List<Product>> liveData;
 
 
-    interface Delgate{
+    interface Delegate{
         void onItemSelected(Product Product);
-
-        boolean onOptionItemSelected(MenuItem item);
     }
-    Delgate parent;
+
+    Delegate parent;
 
     public ProductsListFragment() {
-        allDataProducts = Model.instance.getAllProducts();                    //getting all the products.
+//        ProductModel.instance.getAllProducts(new ProductModel.Listener<List<Product>>() {
+//            @Override
+//            public void onComplete(List<Product> _data) {
+//                data = _data;
+//                if (adapter != null){
+//                    adapter.notifyDataSetChanged();
+//                }
+//            }
+//        });
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof Delgate){
-            parent = (Delgate) getActivity();
+        if (context instanceof Delegate){
+            parent = (Delegate) getActivity();
         } else {
             throw new RuntimeException(context.toString()
                     + "must implement Delegate");
         }
         setHasOptionsMenu(true);
+
+        viewModel = new ViewModelProvider(this).get(ProductListViewModel.class);
     }
 
     @Override
@@ -65,15 +82,33 @@ public class ProductsListFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         prd_List.setLayoutManager(layoutManager);
 
-         ProductListAdapter adapter = new ProductListAdapter();
+         adapter = new ProductListAdapter();
          prd_List.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onClick(int position) {
+        adapter.setOnItemClickListener((position) -> {
                 Log.d("Tag","row " + position + " was clicked");
-                Product product = allDataProducts.get(position);
+                Product product = data.get(position);
                 parent.onItemSelected(product);
+        });
+
+        liveData = viewModel.getData();
+        liveData.observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                data = products;
+                adapter.notifyDataSetChanged();
+            }
+        });
+        SwipeRefreshLayout swipeRefresh = view.findViewById(R.id.product_list_swipe_refresh);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                viewModel.refresh(new ProductModel.CompListener() {
+                    @Override
+                    public void onComplete() {
+                        swipeRefresh.setRefreshing(false);
+                    }
+                });
             }
         });
         return view;
@@ -154,13 +189,13 @@ public class ProductsListFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ProductRowViewHolder holder, int position) {
             //bind data and row according to position
-            Product prd = allDataProducts.get(position);
+            Product prd = data.get(position);
             holder.bind(prd);
         }
 
         @Override
         public int getItemCount() {
-            return allDataProducts.size();
+            return data.size();
         }
     }
 
@@ -175,8 +210,9 @@ public class ProductsListFragment extends Fragment {
         switch (item.getItemId()){
             case R.id.menu_product_list_add:
                 Log.d("TAG","fragment handle add menu");
-                MyDatePickerFragment picker = new MyDatePickerFragment();           //The picker created his fragment
-                picker.show(getParentFragmentManager(),"TAG");
+                //MyDatePickerFragment picker = new MyDatePickerFragment();           //The picker created his fragment
+                //picker.show(getParentFragmentManager(),"TAG");
+
                 return true;
             case R.id.menu_product_list_info:
                 Log.d("TAG","fragment handle info menu");

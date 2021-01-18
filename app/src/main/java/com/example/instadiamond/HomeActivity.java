@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import com.example.instadiamond.model.Product;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class HomeActivity extends AppCompatActivity implements ProductsListFragment.Delgate {
+public class HomeActivity extends AppCompatActivity implements ProductsListFragment.Delegate {
     NavController navCtrl;
 
     @Override
@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity implements ProductsListFragm
         navCtrl = Navigation.findNavController(this,R.id.home_nav_host);
         NavigationUI.setupActionBarWithNavController(this,navCtrl);
 
-        //bottom navigation
+//        //bottom navigation
         BottomNavigationView bottomNav = findViewById(R.id.home_bottom_nav);
         NavigationUI.setupWithNavController(bottomNav,navCtrl);
     }
@@ -54,10 +54,10 @@ public class HomeActivity extends AppCompatActivity implements ProductsListFragm
         return true;
     }
 
-    @Override
-    public boolean onOptionItemSelected(MenuItem item) {
-        return false;
-    }
+    //@Override
+    //public boolean onOptionItemSelected(MenuItem item) {
+     //   return false;
+   // }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

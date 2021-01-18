@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "401744926922",
+    "project_id": "intadiamond",
+    "storage_bucket": "intadiamond.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401744926922:android:865112761f44e1e838bc33",
+        "android_client_info": {
+          "package_name": "com.example.instadiamond"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401744926922-a882chpgjg3rtq9bu0c9v06n07gfavmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuD4zWOEn4bSJ3ZqYFFcF0msMGS6X6k8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401744926922-a882chpgjg3rtq9bu0c9v06n07gfavmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
