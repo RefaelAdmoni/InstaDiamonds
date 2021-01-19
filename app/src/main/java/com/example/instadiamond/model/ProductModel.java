@@ -31,9 +31,19 @@ public class ProductModel {
 //        }
     }
 
-    private void addProduct(Product product, Listener<Boolean> listener) {
+
+    @SuppressLint("StaticFieldLeak")
+    public void addProduct(final Product product, Listener<Boolean> listener) {
+        new AsyncTask<String,String,String>(){
+            @Override
+            protected String doInBackground(String... strings) {
+                AppLocalDb.db.productDao().insertAll(product);
+                return "";
+            }
+        }.execute("");
         ProductFirebase.addProduct(product,listener);
     }
+
 
 //    public void refreshProductList(final CompListener listener){
 //        ProductFirebase.getAllProducts(new Listener<List<Product>>() {

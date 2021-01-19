@@ -88,6 +88,20 @@ public class ProductFirebase {
         });
     }
 
+    // update
+    public static void updateProduct (Product product,final ProductModel.Listener<Boolean> listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = db.collection(PRODUCT_COLLECTION).document(product.id__Product);
+        documentReference.set(product).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (listener!=null){
+                    listener.onComplete(task.isSuccessful());
+                }
+            }
+        });
+    }
+
     private static Product factory(Map<String, Object> json){
         Product product = new Product();
         product.id__Product = (String)json.get("id__Product");

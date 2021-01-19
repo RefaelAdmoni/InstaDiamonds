@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -212,6 +215,7 @@ public class ProductsListFragment extends Fragment {
                 Log.d("TAG","fragment handle add menu");
                 //MyDatePickerFragment picker = new MyDatePickerFragment();           //The picker created his fragment
                 //picker.show(getParentFragmentManager(),"TAG");
+                onClickAddProduct();
 
                 return true;
             case R.id.menu_product_list_info:
@@ -221,5 +225,11 @@ public class ProductsListFragment extends Fragment {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClickAddProduct() {
+        NavController navController = Navigation.findNavController(getView());
+        NavDirections direction = AddNewProductFragmentDirections.actionGlobalAddNewProductFragment();
+        navController.navigate(direction);
     }
 }
