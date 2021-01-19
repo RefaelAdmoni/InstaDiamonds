@@ -29,4 +29,9 @@
         android:name="com.example.instadiamond.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/addNewProductFragment"
+        android:name="com.example.instadiamond.AddNewProductFragment"
+        android:label="fragment_add_new_product"
+        tools:layout="@layout/fragment_add_new_product" />
 </navigation>

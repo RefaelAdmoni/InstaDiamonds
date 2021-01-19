@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -75,7 +76,9 @@ public class ProductFirebase {
     // Auto generate id
     public static void addProduct (Product product,final ProductModel.Listener<Boolean> listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection(PRODUCT_COLLECTION).document().set(product).addOnCompleteListener(new OnCompleteListener<Void>() {
+        DocumentReference documentReference = db.collection(PRODUCT_COLLECTION).document();
+        product.setId__Product(documentReference.getId());
+        documentReference.set(product).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (listener!=null){
