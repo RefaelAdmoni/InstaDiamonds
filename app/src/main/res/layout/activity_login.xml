@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bakground_diamonds_black"
-    tools:context=".Authentication.Register">
+    tools:context=".Authentication.Login">
 
     <TextView
-        android:id="@+id/title_Register"
-        android:layout_width="234dp"
-        android:layout_height="40dp"
+        android:id="@+id/title_Login"
+        android:layout_width="237dp"
+        android:layout_height="61dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="Login"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_Register" />
+        app:layout_constraintTop_toBottomOf="@+id/title_Login" />
 
     <EditText
         android:id="@+id/Password_login_activity"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Email_login_activity" />
 
     <Button
-        android:id="@+id/btn_register_activity"
+        android:id="@+id/btn_Login_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="160dp"
@@ -79,30 +79,19 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/registered_tv_register_activity"
+        android:id="@+id/registered_tv_LoginActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="New User? Create here"
         android:textColor="#D6D3D3"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register_activity" />
-
-    <ProgressBar
-        android:id="@+id/progressBar_loginActivity"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="182dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="181dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registered_tv_register_activity" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Login_activity"
+        app:layout_constraintVertical_bias="0.389" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

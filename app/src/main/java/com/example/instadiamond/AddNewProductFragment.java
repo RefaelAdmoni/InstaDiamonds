@@ -6,8 +6,12 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +23,7 @@ import android.widget.TextView;
 
 import com.example.instadiamond.model.Product;
 import com.example.instadiamond.model.ProductFirebase;
+import com.example.instadiamond.model.ProductModel;
 
 import java.util.Date;
 
@@ -36,7 +41,7 @@ public class AddNewProductFragment extends Fragment {
     Button saveBtn;
     Bitmap imageBitmap;
     ProgressBar progressBar;
-    ProductListViewModel viewModel;
+    ProductViewModel viewModel;
 
 
     public AddNewProductFragment() {
@@ -53,7 +58,7 @@ public class AddNewProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_add_new_product, container, false);
+        view = inflater.inflate(R.layout.fragment_add_new_product, container, false);
 
 //        takePhotoBtn = view.findViewById(R.id.new_jewelry_take_photo_btn);
 //        takePhotoBtn.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +74,7 @@ public class AddNewProductFragment extends Fragment {
         //imageView = view.findViewById(R.id.new_jewelry_image_v);
         saveBtn = view.findViewById(R.id.addproduct_save_btn);
 
-        viewModel = new ViewModelProvider(this).get(ProductListViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
@@ -89,7 +94,7 @@ public class AddNewProductFragment extends Fragment {
                     return;
                 }
 
-                saveNewJewelry();
+                saveNewProduct();
             }
         });
 
@@ -97,7 +102,7 @@ public class AddNewProductFragment extends Fragment {
 
     }
 
-    void saveNewJewelry() {
+    void saveNewProduct() {
         //progressBar.setVisibility(View.VISIBLE);
 
         final String name = nameTv.getText().toString();
@@ -109,8 +114,23 @@ public class AddNewProductFragment extends Fragment {
 
         java.util.Date d = new Date();
 
-        Product product = new Product(name,checked);
-        ProductFirebase.addProduct(product, null);
+        Product product = new Product(name, checked);
+
+        viewModel.add(product, new ProductModel.Listener<Boolean>() {
+            @Override
+            public void onComplete(Boolean data) {
+                Log.d("TAG", "save new product success");
+                NavController navController = Navigation.findNavController(view);
+                // Back to list
+                navController.navigateUp();
+            }
+        });
+
+
+//        NavController navController = Navigation.findNavController(getView());
+//        navController.navigateUp();
+
+
 //        viewModel.add(jewelry, new JewelryModel.Listener<Boolean>() {
 //            @Override
 //            public void onComplete(Boolean data) {
@@ -158,9 +178,6 @@ public class AddNewProductFragment extends Fragment {
 //                }
 //            });
 //        }
-
-
-
 
 
     }

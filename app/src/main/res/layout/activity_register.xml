@@ -2,11 +2,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Login_activity"
+    android:id="@+id/register_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bakground_diamonds_black"
     tools:context=".Authentication.Register">
+
+    <ProgressBar
+        android:id="@+id/progressBar_registerActivity"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="182dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="181dp"
+        android:indeterminateTint="#0B9F06"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registered_tv_register_activity" />
 
     <TextView
         android:id="@+id/title_Register"
@@ -30,23 +45,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:hint="Full Name"
         android:inputType="textPersonName"
-        android:textColor="#DDD0D0"
+        android:textColor="#FFFFFF"
         android:textColorHint="#DDD0D0"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_Register"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintTop_toBottomOf="@+id/title_Register" />
 
     <EditText
-        android:id="@+id/Email_login_activity"
+        android:id="@+id/Email_Register_activity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -57,15 +72,16 @@
         android:gravity="center"
         android:hint="E-Mail"
         android:inputType="textEmailAddress"
-        android:textColor="#DDD0D0"
+        android:textColor="#FFFFFF"
         android:textColorHint="#DDD0D0"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Full_name_register_activity" />
 
     <EditText
-        android:id="@+id/Password_login_activity"
+        android:id="@+id/Password_Register_activity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -76,18 +92,20 @@
         android:gravity="center"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="#DDD0D0"
+        android:textColor="#FFFFFF"
         android:textColorHint="#DDD0D0"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email_login_activity" />
+        app:layout_constraintTop_toBottomOf="@+id/Email_Register_activity" />
 
     <Button
         android:id="@+id/btn_register_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="160dp"
         android:backgroundTint="#72373636"
         android:fontFamily="@font/aclonica"
         android:text="Register"
@@ -96,19 +114,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Password_Register_activity" />
 
     <TextView
         android:id="@+id/registered_tv_register_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="Already Regitered? Login here"
-        android:textColor="#D6D3D3"
-        android:textSize="18sp"
+        android:textColor="#676262"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_register_activity" />
 
