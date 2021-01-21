@@ -20,7 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Login extends AppCompatActivity {
+public class LoginUser extends AppCompatActivity {
     TextView _ToRegisterBtn;
     EditText email_et, password_et;
     Button loginBtn;
@@ -33,13 +33,13 @@ public class Login extends AppCompatActivity {
 
        email_et          = findViewById(R.id.Email_login_activity);
        password_et       = findViewById(R.id.Password_login_activity);
-       _ToRegisterBtn     = findViewById(R.id.registered_tv_LoginActivity);
-       loginBtn = findViewById(R.id.btn_Login_activity);
+       _ToRegisterBtn    = findViewById(R.id.registered_tv_LoginActivity);
+       loginBtn          = findViewById(R.id.btn_Login_activity);
 
        _ToRegisterBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               startActivity(new Intent(getApplicationContext(),Register.class));
+               startActivity(new Intent(getApplicationContext(),RegisterUser.class));
            }
        });
 
@@ -73,11 +73,11 @@ public class Login extends AppCompatActivity {
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if (task.isSuccessful()) {
                            Log.d("TAG", "user is login successful");
-                           Toast.makeText(Login.this, "User logged in" , Toast.LENGTH_SHORT).show();
+                           Toast.makeText(LoginUser.this, "User logged in" , Toast.LENGTH_SHORT).show();
                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                        } else {
                            Log.d("TAG", "user login failed");
-                           Toast.makeText(Login.this, "Error - User login failed! " +task.getException().getMessage() , Toast.LENGTH_SHORT).show();
+                           Toast.makeText(LoginUser.this, "Error - User login failed! " +task.getException().getMessage() , Toast.LENGTH_SHORT).show();
                        }
                    }
                });

@@ -3,6 +3,8 @@ package com.example.instadiamond;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -81,6 +83,12 @@ public class ProductsListFragment extends Fragment {
 
         prd_List = view.findViewById(R.id.products_list_list);
         prd_List.setHasFixedSize(true);
+
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         prd_List.setLayoutManager(layoutManager);
@@ -228,7 +236,7 @@ public class ProductsListFragment extends Fragment {
     }
 
     public void onClickAddProduct() {
-        NavController navController = Navigation.findNavController(getView());
+        NavController navController = Navigation.findNavController(getActivity(), R.id.home_nav_host);
         NavDirections direction = AddNewProductFragmentDirections.actionGlobalAddNewProductFragment();
         navController.navigate(direction);
     }

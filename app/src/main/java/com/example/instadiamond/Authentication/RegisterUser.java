@@ -19,10 +19,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class Register extends AppCompatActivity {
-    EditText _FullName,_Email,_Password;
+public class RegisterUser extends AppCompatActivity {
+    EditText _Email, _Password;
     Button _RegisterBtn;
     TextView _ToLoginBtn;
     FirebaseAuth _FirebaseAuth;
@@ -31,28 +30,27 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register_user);
 
 
-        _FullName       = findViewById(R.id.Full_name_register_activity);
-        _Email          = findViewById(R.id.Email_Register_activity);
-        _Password       = findViewById(R.id.Password_Register_activity);
-        _RegisterBtn     = findViewById(R.id.btn_register_activity);
-        _ToLoginBtn       = findViewById(R.id.registered_tv_register_activity);
-        _progressBar = findViewById(R.id.progressBar_registerActivity);
+        _Email = findViewById(R.id.Email_RegisterUserActivity);
+        _Password = findViewById(R.id.Password_RegisterUserActivity);
+        _RegisterBtn = findViewById(R.id.btn_registerUserActivity);
+        _ToLoginBtn = findViewById(R.id.registered_tv_registerUserActivity);
+        _progressBar = findViewById(R.id.progressBar_registerUserActivity);
 
         _FirebaseAuth = FirebaseAuth.getInstance();
 
-        //check if the user is already registered
-        if (_FirebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            finish();
-        }
+//        //check if the user is already registered
+//        if (_FirebaseAuth.getCurrentUser() != null) {
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//            finish();
+//        }
 
         _ToLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Login.class));
+                startActivity(new Intent(getApplicationContext(), LoginUser.class));
             }
         });
 
@@ -63,15 +61,15 @@ public class Register extends AppCompatActivity {
                 String email = _Email.getText().toString().trim();
                 String password = _Password.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
                     _Email.setError("Email is Required.");
                     return;
                 }
-                if (TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     _Password.setError("Password is Required.");
                     return;
                 }
-                if (password.length() < 6){
+                if (password.length() < 6) {
                     _Password.setError("Password must be 6 characters or more.");
                     return;
                 }
@@ -79,35 +77,21 @@ public class Register extends AppCompatActivity {
                 _progressBar.setVisibility(View.VISIBLE);
 
                 //Register the user to firebase
-
-                _FirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                _FirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d("TAG", "user is created successful");
-                            Toast.makeText(Register.this, "User Created" , Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Login.class));
+                            Toast.makeText(RegisterUser.this, "User Created", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), LoginUser.class));
                         } else {
                             Log.d("TAG", "user is create failed");
-                            Toast.makeText(Register.this, "Error - User create failed! " +task.getException().getMessage() , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterUser.this, "Error - User create failed! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             _progressBar.setVisibility(View.GONE);
-
                         }
                     }
                 });
-
             }
         });
     }
-
-
 }
-
-
-
-
-
-
-
-
-

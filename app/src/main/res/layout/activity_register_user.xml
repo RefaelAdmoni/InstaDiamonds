@@ -2,70 +2,35 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bakground_diamonds_black"
-    tools:context=".Authentication.Register">
+    android:background="@drawable/wallpaper_diamonds_black"
+    tools:context=".Authentication.RegisterUser">
 
-    <ProgressBar
-        android:id="@+id/progressBar_registerActivity"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="182dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="181dp"
-        android:indeterminateTint="#0B9F06"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registered_tv_register_activity" />
 
     <TextView
-        android:id="@+id/title_Register"
+        android:id="@+id/title_RegisterUserActivity"
         android:layout_width="234dp"
         android:layout_height="40dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="Register App"
-        android:textColor="#2D2F31"
+        android:textColor="#96989E"
         android:textSize="30sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.15" />
 
     <EditText
-        android:id="@+id/Full_name_register_activity"
+        android:id="@+id/Email_RegisterUserActivity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="15dp"
-        android:ems="10"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center"
-        android:hint="Full Name"
-        android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#DDD0D0"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_Register" />
-
-    <EditText
-        android:id="@+id/Email_Register_activity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="104dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
         android:fontFamily="@font/aclonica"
@@ -78,10 +43,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Full_name_register_activity" />
+        app:layout_constraintTop_toBottomOf="@+id/title_RegisterUserActivity" />
 
     <EditText
-        android:id="@+id/Password_Register_activity"
+        android:id="@+id/Password_RegisterUserActivity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -98,10 +63,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email_Register_activity" />
+        app:layout_constraintTop_toBottomOf="@+id/Email_RegisterUserActivity" />
 
     <Button
-        android:id="@+id/btn_register_activity"
+        android:id="@+id/btn_registerUserActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -115,10 +80,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password_Register_activity" />
+        app:layout_constraintTop_toBottomOf="@+id/Password_RegisterUserActivity" />
 
     <TextView
-        android:id="@+id/registered_tv_register_activity"
+        android:id="@+id/registered_tv_registerUserActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -131,6 +96,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register_activity" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_registerUserActivity" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_registerUserActivity"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="182dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="181dp"
+        android:indeterminateTint="#0B9F06"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registered_tv_registerUserActivity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

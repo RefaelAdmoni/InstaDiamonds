@@ -3,6 +3,7 @@ package com.example.instadiamond;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -59,6 +60,9 @@ public class AddNewProductFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_add_new_product, container, false);
+
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.hide();
 
 //        takePhotoBtn = view.findViewById(R.id.new_jewelry_take_photo_btn);
 //        takePhotoBtn.setOnClickListener(new View.OnClickListener() {
