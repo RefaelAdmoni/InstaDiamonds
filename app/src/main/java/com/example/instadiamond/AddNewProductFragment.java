@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.example.instadiamond.model.Product;
 import com.example.instadiamond.model.ProductFirebase;
 import com.example.instadiamond.model.ProductModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Date;
 
@@ -32,16 +33,16 @@ import java.util.Date;
 public class AddNewProductFragment extends Fragment {
 
     View view;
-    ImageView imageView;
-    TextView idTv;
     TextView nameTv;
-    TextView typeTv;
-    TextView costTv;
-    CheckBox checkBox;
+    TextView imageUrl_Tv;
+    //    TextView idTv;
+    TextView caratTv;
+    TextView priceTv;
+//    CheckBox checkBox;
     Button takePhotoBtn;
-    Button saveBtn;
     Bitmap imageBitmap;
     ProgressBar progressBar;
+    Button saveBtn;
     ProductViewModel viewModel;
 
 
@@ -73,9 +74,9 @@ public class AddNewProductFragment extends Fragment {
 //        });
 
         nameTv = view.findViewById(R.id.addproduct_name_et);
-        idTv = view.findViewById(R.id.addproduct_id_et);
-        checkBox = view.findViewById(R.id.addproduct_cb_cb);
-        //imageView = view.findViewById(R.id.new_jewelry_image_v);
+        caratTv = view.findViewById(R.id.addproduct_carat_et);
+        priceTv = view.findViewById(R.id.addproduct_price_et);
+        imageUrl_Tv = view.findViewById(R.id.addproduct_imageUrl_et);
         saveBtn = view.findViewById(R.id.addproduct_save_btn);
 
         viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
@@ -86,15 +87,21 @@ public class AddNewProductFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String name = nameTv.getText().toString().trim();
-                String ID = idTv.getText().toString().trim();
+                String carat = caratTv.getText().toString().trim();
+                String price = priceTv.getText().toString().trim();
 
                 if (TextUtils.isEmpty(name)) {
                     nameTv.setError("Name is required.");
                     return;
                 }
 
-                if (TextUtils.isEmpty(ID)) {
-                    idTv.setError("ID is required.");
+                if (TextUtils.isEmpty(carat)) {
+                    caratTv.setError("Carats is required.");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(price)) {
+                    priceTv.setError("price is required.");
                     return;
                 }
 
@@ -110,15 +117,20 @@ public class AddNewProductFragment extends Fragment {
         //progressBar.setVisibility(View.VISIBLE);
 
         final String name = nameTv.getText().toString();
+        final String carat = caratTv.getText().toString();
+        final String price = priceTv.getText().toString();
+        final String imageUrl = imageUrl_Tv.getText().toString();
 
-        final String id = idTv.getText().toString();
-
-        final Boolean checked = checkBox.isChecked();
+//        final Boolean checked = false;
 
 
         java.util.Date d = new Date();
 
-        Product product = new Product(name, checked);
+        Product product = new Product(name,carat,price,imageUrl,false);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            product.setSellerId__Product(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        }
 
         viewModel.add(product, new ProductModel.Listener<Boolean>() {
             @Override

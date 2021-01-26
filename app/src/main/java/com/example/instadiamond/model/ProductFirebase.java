@@ -106,6 +106,8 @@ public class ProductFirebase {
         Product product = new Product();
         product.id__Product = (String)json.get("id__Product");
         product.name__Product = (String)json.get("name__Product");
+        product.carat__Product = (String)json.get("carat__Product");
+        product.price__Product = (String)json.get("price__Product");
         product.imageUrl__Product = (String)json.get("imageUrl__Product");
         product.isChecked__Product = (boolean)json.get("isChecked__Product");
         //Timestamp ts = (Timestamp)json.get("lastUpdated");
@@ -117,13 +119,13 @@ public class ProductFirebase {
         HashMap<String, Object> result = new HashMap<>();
         result.put("id__Product", product.id__Product);
         result.put("name__Product", product.name__Product);
+        result.put("carat__Product", product.carat__Product);
+        result.put("price__Product", product.price__Product);
         result.put("imageUrl__Product", product.imageUrl__Product);
         result.put("isChecked__Product", product.isChecked__Product);
         //result.put("lastUpdated", FieldValue.serverTimestamp());
         return result;
     }
-
-
 
 }
 

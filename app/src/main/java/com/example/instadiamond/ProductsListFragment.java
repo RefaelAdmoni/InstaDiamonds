@@ -31,6 +31,7 @@ import com.example.instadiamond.model.ProductFirebase;
 import com.example.instadiamond.model.ProductModel;
 import com.example.instadiamond.model.Product;
 
+import java.text.BreakIterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,15 +51,6 @@ public class ProductsListFragment extends Fragment {
     Delegate parent;
 
     public ProductsListFragment() {
-//        ProductModel.instance.getAllProducts(new ProductModel.Listener<List<Product>>() {
-//            @Override
-//            public void onComplete(List<Product> _data) {
-//                data = _data;
-//                if (adapter != null){
-//                    adapter.notifyDataSetChanged();
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -103,6 +95,9 @@ public class ProductsListFragment extends Fragment {
         });
 
         liveData = viewModel.getData();
+        if (liveData == null) {
+
+        }
         liveData.observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
@@ -135,6 +130,7 @@ public class ProductsListFragment extends Fragment {
         TextView name;
         TextView carat;
         TextView price;
+        TextView imageUrl;
         CheckBox cb;
         ImageView image;
         Product product;
@@ -166,8 +162,10 @@ public class ProductsListFragment extends Fragment {
         }
         public void bind(Product prd){
             name.setText(prd.name__Product);
-            carat.setText(prd.Carat_Diamond__Product+"");
+            carat.setText(prd.carat__Product+"");
             price.setText(prd.price__Product+"");
+//            imageUrl.setText(prd.imageUrl__Product+"");
+//            imageUrl.setText("123456");
             cb.setChecked(prd.isChecked__Product);
             product = prd;
         }

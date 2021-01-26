@@ -26,7 +26,7 @@ public class ProductModel {
     }
     private ProductModel(){
 //        for (int i=0;i<10;i++) {
-//            Product prd = new Product(" " + i,"name " + i);
+//            Product prd = new Product("name"+i,i+"",i*i+"","",false);
 //            addProduct(prd,null);
 //        }
     }

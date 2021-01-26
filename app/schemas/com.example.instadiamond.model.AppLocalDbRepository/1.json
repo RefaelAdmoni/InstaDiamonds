@@ -2,46 +2,22 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "027be39b72c1e1c12a6ee75887e7c044",
+    "identityHash": "bfb23a6e31ed83cbe0e58029b3ff33d1",
     "entities": [
       {
         "tableName": "Product",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id__Product` TEXT NOT NULL, `name__Product` TEXT, `Carat_Diamond__Product` REAL NOT NULL, `weight_Diamond__Product` REAL NOT NULL, `color_Diamond__product` TEXT, `isAJewel__Product` INTEGER, `isChecked__Product` INTEGER, `price__Product` REAL NOT NULL, `imageUrl__Product` TEXT, `sellerId__Product` TEXT, PRIMARY KEY(`id__Product`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name__Product` TEXT NOT NULL, `carat__Product` TEXT, `isChecked__Product` INTEGER, `price__Product` TEXT, `imageUrl__Product` TEXT, `id__Product` TEXT, `sellerId__Product` TEXT, PRIMARY KEY(`name__Product`))",
         "fields": [
-          {
-            "fieldPath": "id__Product",
-            "columnName": "id__Product",
-            "affinity": "TEXT",
-            "notNull": true
-          },
           {
             "fieldPath": "name__Product",
             "columnName": "name__Product",
             "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "Carat_Diamond__Product",
-            "columnName": "Carat_Diamond__Product",
-            "affinity": "REAL",
             "notNull": true
           },
           {
-            "fieldPath": "weight_Diamond__Product",
-            "columnName": "weight_Diamond__Product",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "color_Diamond__product",
-            "columnName": "color_Diamond__product",
+            "fieldPath": "carat__Product",
+            "columnName": "carat__Product",
             "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "isAJewel__Product",
-            "columnName": "isAJewel__Product",
-            "affinity": "INTEGER",
             "notNull": false
           },
           {
@@ -53,12 +29,18 @@
           {
             "fieldPath": "price__Product",
             "columnName": "price__Product",
-            "affinity": "REAL",
-            "notNull": true
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "imageUrl__Product",
             "columnName": "imageUrl__Product",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "id__Product",
+            "columnName": "id__Product",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -71,7 +53,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id__Product"
+            "name__Product"
           ],
           "autoGenerate": false
         },
@@ -82,7 +64,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '027be39b72c1e1c12a6ee75887e7c044')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bfb23a6e31ed83cbe0e58029b3ff33d1')"
     ]
   }
 }
