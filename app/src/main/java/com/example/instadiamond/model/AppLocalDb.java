@@ -15,7 +15,7 @@ public class AppLocalDb {
     static public AppLocalDbRepository db =
             Room.databaseBuilder(MyApplication.context,
                     AppLocalDbRepository.class,
-                    "productsdb.db")
+                    "productsdb2.db")
                     .fallbackToDestructiveMigration()
                     .build();
 }

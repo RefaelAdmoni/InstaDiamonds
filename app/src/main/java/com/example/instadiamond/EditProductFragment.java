@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.instadiamond.model.Product;
 import com.example.instadiamond.model.ProductModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 
@@ -31,6 +33,7 @@ public class EditProductFragment extends Fragment {
     Button updateBtn;
     ProductViewModel viewModel;
     View view;
+    ImageView image;
 
     public EditProductFragment() {
         // Required empty public constructor
@@ -53,7 +56,7 @@ public class EditProductFragment extends Fragment {
         //urlImage_ET = view.findViewById(R.id.imageUrlProduct_et_EditProductFragment2);
         updateBtn = view.findViewById(R.id.updateBtn_editProductFragment);
 
-
+        image = view.findViewById(R.id.image_ImageView_EditeProductFragment);
         //getting all data from last fragment, and define the product.
         product = ProductDetailsFragmentArgs.fromBundle(getArguments()).getProduct();
 
@@ -61,7 +64,11 @@ public class EditProductFragment extends Fragment {
         name_ET.setText(product.getName__Product());
         carats_ET.setText(product.getCarat__Product() + "");
         price_ET.setText(product.getPrice__Product() + "");
-        //urlImage_ET.setText(product.getImageUrl__Product());
+        if (product.imageUrl__Product != null && product.imageUrl__Product != ""){
+            Picasso.get().load(product.imageUrl__Product).into(image);
+        } else {
+            image.setImageResource(R.drawable.diamond_ring);
+        }
 
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override

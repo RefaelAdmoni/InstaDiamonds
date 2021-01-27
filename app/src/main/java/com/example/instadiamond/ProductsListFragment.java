@@ -30,6 +30,7 @@ import android.widget.TextView;
 import com.example.instadiamond.model.ProductFirebase;
 import com.example.instadiamond.model.ProductModel;
 import com.example.instadiamond.model.Product;
+import com.squareup.picasso.Picasso;
 
 import java.text.BreakIterator;
 import java.util.LinkedList;
@@ -164,8 +165,12 @@ public class ProductsListFragment extends Fragment {
             name.setText(prd.name__Product);
             carat.setText(prd.carat__Product+"");
             price.setText(prd.price__Product+"");
-//            imageUrl.setText(prd.imageUrl__Product+"");
-//            imageUrl.setText("123456");
+            Log.d("TAG","ImageUrl = " + prd.imageUrl__Product);
+            if (prd.imageUrl__Product != null && prd.imageUrl__Product != ""){
+                Picasso.get().load(prd.imageUrl__Product).into(image);
+            } else {
+                image.setImageResource(R.drawable.diamond_ring);
+            }
             cb.setChecked(prd.isChecked__Product);
             product = prd;
         }

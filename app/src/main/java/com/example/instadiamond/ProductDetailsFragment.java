@@ -14,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.instadiamond.model.Product;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 public class ProductDetailsFragment extends Fragment {
     private Product product;
@@ -25,6 +27,7 @@ public class ProductDetailsFragment extends Fragment {
     TextView carat;
     Button closeBtn, editBtn, deleteBtn;
     FirebaseAuth firebaseAuth;
+    ImageView image;
 
     public ProductDetailsFragment() {
         // Required empty public constructor
@@ -44,6 +47,8 @@ public class ProductDetailsFragment extends Fragment {
 
         name = view.findViewById(R.id.product_details_name_tv);
         carat = view.findViewById(R.id.product_details_carats_tv);
+        image = view.findViewById(R.id.product_details_imageView);
+
 
         //getting all data from last fragment, and define the product.
         product = ProductDetailsFragmentArgs.fromBundle(getArguments()).getProduct();
@@ -94,5 +99,12 @@ public class ProductDetailsFragment extends Fragment {
     private void update_dispaly() {
         name.setText(product.name__Product);
         carat.setText(product.carat__Product +"");
+
+        if (product.imageUrl__Product != null && product.imageUrl__Product != ""){
+            Picasso.get().load(product.imageUrl__Product).into(image);
+        } else {
+            image.setImageResource(R.drawable.diamond_ring);
+        }
+
     }
 }
