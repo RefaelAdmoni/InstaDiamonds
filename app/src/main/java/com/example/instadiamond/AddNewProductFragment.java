@@ -1,8 +1,11 @@
 package com.example.instadiamond;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -11,6 +14,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,26 +29,30 @@ import android.widget.TextView;
 import com.example.instadiamond.model.Product;
 import com.example.instadiamond.model.ProductFirebase;
 import com.example.instadiamond.model.ProductModel;
+import com.example.instadiamond.model.StoreModel;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Date;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class AddNewProductFragment extends Fragment {
 
+    Product newProduct;
     View view;
     TextView nameTv;
     TextView imageUrl_Tv;
     //    TextView idTv;
     TextView caratTv;
     TextView priceTv;
-//    CheckBox checkBox;
+    //    CheckBox checkBox;
     Button takePhotoBtn;
     Bitmap imageBitmap;
     ProgressBar progressBar;
     Button saveBtn;
     ProductViewModel viewModel;
-
+    ImageView imageView;
 
     public AddNewProductFragment() {
         // Required empty public constructor
@@ -65,18 +73,16 @@ public class AddNewProductFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.hide();
 
-//        takePhotoBtn = view.findViewById(R.id.new_jewelry_take_photo_btn);
-//        takePhotoBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                takePhoto();
-//            }
-//        });
+        //take a photo from camera
+        takePhotoBtn = view.findViewById(R.id.takePhoto_Btn_addNewProductFragment);
+        takePhotoBtn.setOnClickListener(v -> { takePhoto(); });
+
+        imageView = view.findViewById(R.id.image_imageView_addProductFragment);
+
 
         nameTv = view.findViewById(R.id.addproduct_name_et);
         caratTv = view.findViewById(R.id.addproduct_carat_et);
         priceTv = view.findViewById(R.id.addproduct_price_et);
-        imageUrl_Tv = view.findViewById(R.id.addproduct_imageUrl_et);
         saveBtn = view.findViewById(R.id.addproduct_save_btn);
 
         viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
@@ -113,34 +119,84 @@ public class AddNewProductFragment extends Fragment {
 
     }
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    void takePhoto() {
+        Log.d("TAG", "Take photo clicked");
+        Intent takePictureIntent = new Intent(
+                MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            Log.d("TAG", "Start activity - take picture intent");
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    // callback after camera
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = rotateImage((Bitmap) extras.get("data"));
+            imageView.setImageBitmap(imageBitmap);
+        }
+    }
+
+    public static Bitmap rotateImage(Bitmap source) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
+    }
+
+
     void saveNewProduct() {
         //progressBar.setVisibility(View.VISIBLE);
 
         final String name = nameTv.getText().toString();
         final String carat = caratTv.getText().toString();
         final String price = priceTv.getText().toString();
-        final String imageUrl = imageUrl_Tv.getText().toString();
+//        final String imageUrl = imageUrl_Tv.getText().toString();
 
 //        final Boolean checked = false;
 
 
         java.util.Date d = new Date();
-
-        Product product = new Product(name,carat,price,imageUrl,false);
-
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            product.setSellerId__Product(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        }
-
-        viewModel.add(product, new ProductModel.Listener<Boolean>() {
+        StoreModel.uploadImage(imageBitmap, "my_photo" + d.getTime(), new StoreModel.Listener() {
             @Override
-            public void onComplete(Boolean data) {
-                Log.d("TAG", "save new product success");
-                NavController navController = Navigation.findNavController(view);
-                // Back to list
-                navController.navigateUp();
+            public void onSuccess(String url) {
+                Log.d("TAG", "url: " + url);
+                newProduct = new Product(name, carat, price, url, false);
+                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                    newProduct.setSellerId__Product(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                }
+
+                ProductModel.instance.addProduct(newProduct, new ProductModel.Listener<Boolean>() {
+                    @Override
+                    public void onComplete(Boolean data) {
+                        NavController navCtrl = Navigation.findNavController(view);
+                        NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
+                        navCtrl.navigate(direction);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onFail() {
+
             }
         });
+
+
+
+//        viewModel.add(newProduct, new ProductModel.Listener<Boolean>() {
+//            @Override
+//            public void onComplete(Boolean data) {
+//                Log.d("TAG", "save new product success");
+//                NavController navController = Navigation.findNavController(view);
+//                // Back to list
+//                navController.navigateUp();
+//            }
+//        });
 
 
 //        NavController navController = Navigation.findNavController(getView());

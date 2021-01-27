@@ -7,7 +7,7 @@
     tools:context=".EditProductFragment">
 
     <EditText
-        android:id="@+id/imageUrlProduct_et_EditProductFragment2"
+        android:id="@+id/imageUrlProduct_et_EditProductFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -15,13 +15,13 @@
         android:ems="10"
         android:fontFamily="sans-serif-black"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/nameProduct_TV_EditProductFragment4"
+        app:layout_constraintBottom_toBottomOf="@+id/imageUrlProduct_TV_EditProductFragment4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nameProduct_TV_EditProductFragment4"
-        app:layout_constraintTop_toTopOf="@+id/nameProduct_TV_EditProductFragment4" />
+        app:layout_constraintStart_toEndOf="@+id/imageUrlProduct_TV_EditProductFragment4"
+        app:layout_constraintTop_toTopOf="@+id/imageUrlProduct_TV_EditProductFragment4" />
 
     <TextView
-        android:id="@+id/nameProduct_TV_EditProductFragment4"
+        android:id="@+id/imageUrlProduct_TV_EditProductFragment4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -30,10 +30,10 @@
         android:text="URL image: "
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameProduct_TV_EditProductFragment3" />
+        app:layout_constraintTop_toBottomOf="@+id/priceProduct_TV_EditProductFragment" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/image_ImageView_EditeProductFragment"
         android:layout_width="245dp"
         android:layout_height="198dp"
         android:layout_marginStart="25dp"
@@ -65,10 +65,10 @@
         android:ems="10"
         android:fontFamily="sans-serif-black"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/nameProduct_TV_EditProductFragment2"
+        app:layout_constraintBottom_toBottomOf="@+id/caratsProduct_TV_EditProductFragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nameProduct_TV_EditProductFragment2"
-        app:layout_constraintTop_toTopOf="@+id/nameProduct_TV_EditProductFragment2" />
+        app:layout_constraintStart_toEndOf="@+id/caratsProduct_TV_EditProductFragment"
+        app:layout_constraintTop_toTopOf="@+id/caratsProduct_TV_EditProductFragment" />
 
     <EditText
         android:id="@+id/priceProduct_et_EditProductFragment"
@@ -79,11 +79,11 @@
         android:ems="10"
         android:fontFamily="sans-serif-black"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/nameProduct_TV_EditProductFragment3"
+        app:layout_constraintBottom_toBottomOf="@+id/priceProduct_TV_EditProductFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/nameProduct_TV_EditProductFragment3"
-        app:layout_constraintTop_toTopOf="@+id/nameProduct_TV_EditProductFragment3"
+        app:layout_constraintStart_toEndOf="@+id/priceProduct_TV_EditProductFragment"
+        app:layout_constraintTop_toTopOf="@+id/priceProduct_TV_EditProductFragment"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -96,10 +96,10 @@
         android:text="Name: "
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/image_ImageView_EditeProductFragment" />
 
     <TextView
-        android:id="@+id/nameProduct_TV_EditProductFragment2"
+        android:id="@+id/caratsProduct_TV_EditProductFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -111,7 +111,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameProduct_TV_EditProductFragment" />
 
     <TextView
-        android:id="@+id/nameProduct_TV_EditProductFragment3"
+        android:id="@+id/priceProduct_TV_EditProductFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -120,7 +120,7 @@
         android:text="Price: "
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameProduct_TV_EditProductFragment2" />
+        app:layout_constraintTop_toBottomOf="@+id/caratsProduct_TV_EditProductFragment" />
 
     <Button
         android:id="@+id/updateBtn_editProductFragment"
@@ -131,6 +131,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameProduct_TV_EditProductFragment4"
+        app:layout_constraintTop_toBottomOf="@+id/imageUrlProduct_TV_EditProductFragment4"
         app:layout_constraintVertical_bias="0.366" />
 </androidx.constraintlayout.widget.ConstraintLayout>

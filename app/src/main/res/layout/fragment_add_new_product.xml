@@ -75,18 +75,21 @@
         android:id="@+id/addproduct_save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="92dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
         android:text="Save!!!!!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addproduct_price_et" />
 
     <TextView
         android:id="@+id/addproduct_title_tv"
-        android:layout_width="324dp"
-        android:layout_height="209dp"
+        android:layout_width="363dp"
+        android:layout_height="210dp"
         android:layout_marginStart="158dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="157dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
@@ -94,7 +97,7 @@
         android:textColor="#7C3333"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,12 +105,12 @@
         android:id="@+id/name_textView_addFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="59dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:text="Name: "
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addproduct_title_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/takePhoto_Btn_addNewProductFragment" />
 
     <EditText
         android:id="@+id/addproduct_price_et"
@@ -124,27 +127,27 @@
         app:layout_constraintStart_toEndOf="@+id/carat_textView_addFragment3"
         app:layout_constraintTop_toTopOf="@+id/carat_textView_addFragment3" />
 
-    <EditText
-        android:id="@+id/addproduct_imageUrl_et"
+    <ImageView
+        android:id="@+id/image_imageView_addProductFragment"
+        android:layout_width="171dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="100dp"
+        android:src="@drawable/diamond_ring"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addproduct_title_tv" />
+
+    <Button
+        android:id="@+id/takePhoto_Btn_addNewProductFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="5dp"
-        android:ems="10"
-        android:hint="Image Url"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Image Url: "
-        app:layout_constraintStart_toStartOf="@+id/carat_textView_addFragment3"
-        app:layout_constraintTop_toBottomOf="@+id/carat_textView_addFragment3" />
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#798F4949"
+        android:text="Take a photo"
+        app:layout_constraintEnd_toEndOf="@+id/image_imageView_addProductFragment"
+        app:layout_constraintStart_toStartOf="@+id/image_imageView_addProductFragment"
+        app:layout_constraintTop_toBottomOf="@+id/image_imageView_addProductFragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

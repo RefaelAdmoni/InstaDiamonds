@@ -19,6 +19,7 @@ public class ProductModel {
     public static final ProductModel instance = new ProductModel();
 
     public interface Listener<T>{
+
         void onComplete(T data);
     }
     public interface CompListener{
@@ -31,7 +32,6 @@ public class ProductModel {
 //        }
     }
 
-
     @SuppressLint("StaticFieldLeak")
     public void addProduct(final Product product, Listener<Boolean> listener) {
         new AsyncTask<String,String,String>(){
@@ -43,6 +43,7 @@ public class ProductModel {
         }.execute("");
         ProductFirebase.addProduct(product,listener);
     }
+
 
 
 //    public void refreshProductList(final CompListener listener){
@@ -119,6 +120,7 @@ public class ProductModel {
 //        });
 //    }
 
+
     public void refreshProductList(final CompListener listener){
         ProductFirebase.getAllProducts(new Listener<List<Product>>() {
             @SuppressLint("StaticFieldLeak")
@@ -155,7 +157,14 @@ public class ProductModel {
         return null;
     }
 
-    void update_Product(Product product) {}
+    @SuppressLint("StaticFieldLeak")
+    public void updateProduct(Product product, Listener listener) {
+        addProduct(product,listener);
+    }
+
+//    void update_Product(Product product){
+//
+//    }
 
     void delete_Product(String id) {}
 }

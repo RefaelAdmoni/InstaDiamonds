@@ -11,7 +11,7 @@ public class ProductViewModel extends ViewModel {
     }
 
     public void update(Product product, ProductModel.Listener listener) {
-        //ProductModel.instance.updateProduct(product, listener);
+        ProductModel.instance.updateProduct(product, listener);
     }
 
     public void delete(Product product, ProductModel.Listener listener) {

@@ -47,4 +47,7 @@
             app:argType="com.example.instadiamond.model.Product" />
     </fragment>
     <action android:id="@+id/action_global_editProductFragment" app:destination="@id/editProductFragment" />
+    <action
+        android:id="@+id/action_global_productsListFragment"
+        app:destination="@id/productsListFragment" />
 </navigation>
