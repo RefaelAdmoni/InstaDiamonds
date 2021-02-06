@@ -19,7 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity implements ProductsListFragment.Delegate {
     NavController navCtrl;
-
+    BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity implements ProductsListFragm
         NavigationUI.setupActionBarWithNavController(this,navCtrl);
 
         //bottom navigation
-        BottomNavigationView bottomNav = findViewById(R.id.home_bottom_nav);
+        bottomNav = findViewById(R.id.home_bottom_nav);
         NavigationUI.setupWithNavController(bottomNav,navCtrl);
     }
 

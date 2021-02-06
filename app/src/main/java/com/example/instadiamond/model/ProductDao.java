@@ -19,5 +19,4 @@ public interface ProductDao {                      //DAO = Data Access Object
 
     @Delete
     void delete(Product product);
-
 }

@@ -2,17 +2,23 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "bfb23a6e31ed83cbe0e58029b3ff33d1",
+    "identityHash": "2a1c79ca2fbe12b83bbfe0d4c54f0f8b",
     "entities": [
       {
         "tableName": "Product",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name__Product` TEXT NOT NULL, `carat__Product` TEXT, `isChecked__Product` INTEGER, `price__Product` TEXT, `imageUrl__Product` TEXT, `id__Product` TEXT, `sellerId__Product` TEXT, PRIMARY KEY(`name__Product`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name__Product` TEXT, `carat__Product` TEXT, `isChecked__Product` INTEGER, `price__Product` TEXT, `imageUrl__Product` TEXT, `isDeleted` INTEGER, `sellerId__Product` TEXT, PRIMARY KEY(`id`))",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
           {
             "fieldPath": "name__Product",
             "columnName": "name__Product",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "carat__Product",
@@ -39,9 +45,9 @@
             "notNull": false
           },
           {
-            "fieldPath": "id__Product",
-            "columnName": "id__Product",
-            "affinity": "TEXT",
+            "fieldPath": "isDeleted",
+            "columnName": "isDeleted",
+            "affinity": "INTEGER",
             "notNull": false
           },
           {
@@ -53,7 +59,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "name__Product"
+            "id"
           ],
           "autoGenerate": false
         },
@@ -64,7 +70,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bfb23a6e31ed83cbe0e58029b3ff33d1')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2a1c79ca2fbe12b83bbfe0d4c54f0f8b')"
     ]
   }
 }

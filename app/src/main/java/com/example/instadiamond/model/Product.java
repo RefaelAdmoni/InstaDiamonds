@@ -15,56 +15,55 @@ import java.util.Map;
 public class Product implements Serializable {
     @PrimaryKey
     @NonNull
+    public String id;
+
     public String name__Product;            //what is the name of product?
     public String carat__Product;           //how many carats of the diamond?
     public Boolean isChecked__Product;      //is the product selected?
     public String price__Product;           //price per 1 CT
     public String imageUrl__Product;        //path the image product
 
-    public String id__Product;
+    public Boolean isDeleted;               //is this product was delete?
     public String sellerId__Product;
 
 //    public long lastUpdated;
 
 
     public Product() {
+        this.id                     = "temp";
+        this.name__Product          = "empty";
+        this.carat__Product         = "0";
+        this.isChecked__Product     = false;
+        this.price__Product         = "0";
+        this.imageUrl__Product      = "0";
+        this.isDeleted              = false;
     }
 
-    public Product(String name, String carat, String price, String imageUrl, Boolean isChecked) {
+    public Product(String id, String name, String carat, String price, String imageUrl, Boolean isChecked, String pid) {
+        this.id                     = id;
         this.name__Product          = name;
         this.carat__Product         = carat;
         this.isChecked__Product     = isChecked;
         this.price__Product         = price;
         this.imageUrl__Product      = imageUrl;
+        this.isDeleted              = false;
+        this.sellerId__Product      = pid;
     }
 
-//    public Product(String name, Boolean checked) {
-//        this.name__Product = name;
-//        this.isChecked__Product = checked;
-//    }
-//
-//    public Product(String id, String name, boolean checked) {
-//        this.name__Product = name;
-//        this.isChecked__Product = checked;
-//    }
-
-
-    //    public Map<String,Object> toMap() {
-//        HashMap<String,Object> result = new HashMap<>();
-//        result.put("id",id__Product);
-//        result.put("name",name__Product);
-//        result.put("imgUrl",imageUrl__Product);
-//        result.put("isChecked",isChecked__Product);
-//        result.put("lastUpdated", FieldValue.serverTimestamp());
-//        return result;
-//    }
-
     @NonNull
+    public String getId__Product() {
+        return id;
+    }
+
+    public void setId__Product(@NonNull String id) {
+        this.id = id;
+    }
+
     public String getName__Product() {
         return name__Product;
     }
 
-    public void setName__Product(@NonNull String name__Product) {
+    public void setName__Product(String name__Product) {
         this.name__Product = name__Product;
     }
 
@@ -73,7 +72,7 @@ public class Product implements Serializable {
     }
 
     public void setCarat__Product(String carat__Product) {
-        carat__Product = carat__Product;
+        this.carat__Product = carat__Product;
     }
 
     public Boolean getChecked__Product() {
@@ -100,12 +99,12 @@ public class Product implements Serializable {
         this.imageUrl__Product = imageUrl__Product;
     }
 
-    public String getId__Product() {
-        return id__Product;
+    public Boolean getDeleted() {
+        return isDeleted;
     }
 
-    public void setId__Product(String id_Product) {
-        this.id__Product = id_Product;
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     public String getSellerId__Product() {
@@ -115,4 +114,5 @@ public class Product implements Serializable {
     public void setSellerId__Product(String sellerId__Product) {
         this.sellerId__Product = sellerId__Product;
     }
+
 }

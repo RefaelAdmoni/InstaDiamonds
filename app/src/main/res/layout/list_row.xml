@@ -93,6 +93,7 @@
         android:layout_width="32dp"
         android:layout_height="26dp"
         android:focusable="false"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/row_TV_diamondPrice"
         app:layout_constraintEnd_toEndOf="@+id/row_TV_diamondCarats"
         app:layout_constraintHorizontal_bias="1.0"

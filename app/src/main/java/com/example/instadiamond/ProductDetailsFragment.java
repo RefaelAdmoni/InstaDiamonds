@@ -18,13 +18,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.instadiamond.model.Product;
+import com.example.instadiamond.model.ProductModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 public class ProductDetailsFragment extends Fragment {
     private Product product;
-    TextView name;
-    TextView carat;
+    TextView name,carat,price;
     Button closeBtn, editBtn, deleteBtn;
     FirebaseAuth firebaseAuth;
     ImageView image;
@@ -47,14 +47,15 @@ public class ProductDetailsFragment extends Fragment {
 
         name = view.findViewById(R.id.product_details_name_tv);
         carat = view.findViewById(R.id.product_details_carats_tv);
+        price = view.findViewById(R.id.product_details_price_tv);
         image = view.findViewById(R.id.product_details_imageView);
 
 
         //getting all data from last fragment, and define the product.
         product = ProductDetailsFragmentArgs.fromBundle(getArguments()).getProduct();
-        if (product != null){           //option check again
-            update_dispaly();
-        }
+//        if (product != null){           //option check again
+//            update_dispaly();
+//        }
 
         deleteBtn = view.findViewById(R.id.delete_btn_productDetailsFragment);
         editBtn = view.findViewById(R.id.Edit_btn_productDetailsFragment);
@@ -72,6 +73,14 @@ public class ProductDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                ProductModel.instance.delete_Product(product, new ProductModel.Listener<Boolean>() {
+                    @Override
+                    public void onComplete(Boolean data) {
+                        NavController navCtrl = Navigation.findNavController(view);
+                        NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
+                        navCtrl.navigate(direction);
+                    }
+                });
             }
         });
 

@@ -106,6 +106,7 @@ public class ProductsListFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+
         SwipeRefreshLayout swipeRefresh = view.findViewById(R.id.product_list_swipe_refresh);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -163,8 +164,8 @@ public class ProductsListFragment extends Fragment {
         }
         public void bind(Product prd){
             name.setText(prd.name__Product);
-            carat.setText(prd.carat__Product+"");
-            price.setText(prd.price__Product+"");
+            carat.setText(prd.carat__Product);
+            price.setText(prd.price__Product);
             Log.d("TAG","ImageUrl = " + prd.imageUrl__Product);
             if (prd.imageUrl__Product != null && prd.imageUrl__Product != ""){
                 Picasso.get().load(prd.imageUrl__Product).into(image);

@@ -30,27 +30,17 @@
         android:id="@+id/carat_textView_addFragment3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:text="Price: "
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@+id/carat_textView_addFragment"
-        app:layout_constraintTop_toBottomOf="@+id/carat_textView_addFragment" />
-
-    <TextView
-        android:id="@+id/carat_textView_addFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Carats: "
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@+id/name_textView_addFragment"
-        app:layout_constraintTop_toBottomOf="@+id/name_textView_addFragment" />
+        app:layout_constraintStart_toStartOf="@+id/carat_textView_addFragment2"
+        app:layout_constraintTop_toBottomOf="@+id/carat_textView_addFragment2" />
 
     <TextView
         android:id="@+id/carat_textView_addFragment2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:text="Carats: "
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="@+id/name_textView_addFragment"
@@ -75,12 +65,10 @@
         android:id="@+id/addproduct_save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="2dp"
         android:text="Save!!!!!"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addproduct_price_et" />
 

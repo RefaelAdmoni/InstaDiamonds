@@ -1,50 +1,32 @@
 package com.example.instadiamond.model;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
-import com.example.instadiamond.MyApplication;
-
-import java.util.LinkedList;
 import java.util.List;
 
-import static android.content.Context.MODE_PRIVATE;
 
 public class ProductModel {
     public static final ProductModel instance = new ProductModel();
 
-    public interface Listener<T>{
+    public interface Listener<T> {
 
         void onComplete(T data);
     }
-    public interface CompListener{
+
+    public interface CompListener {
         void onComplete();
     }
-    private ProductModel(){
+
+    private ProductModel() {
 //        for (int i=0;i<10;i++) {
 //            Product prd = new Product("name"+i,i+"",i*i+"","",false);
 //            addProduct(prd,null);
 //        }
     }
-
-    @SuppressLint("StaticFieldLeak")
-    public void addProduct(final Product product, Listener<Boolean> listener) {
-        new AsyncTask<String,String,String>(){
-            @Override
-            protected String doInBackground(String... strings) {
-                AppLocalDb.db.productDao().insertAll(product);
-                return "";
-            }
-        }.execute("");
-        ProductFirebase.addProduct(product,listener);
-    }
-
-
 
 //    public void refreshProductList(final CompListener listener){
 //        ProductFirebase.getAllProducts(new Listener<List<Product>>() {
@@ -120,16 +102,15 @@ public class ProductModel {
 //        });
 //    }
 
-
-    public void refreshProductList(final CompListener listener){
+    public void refreshProductList(final CompListener listener) {
         ProductFirebase.getAllProducts(new Listener<List<Product>>() {
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onComplete(final List<Product> data) {
-                new AsyncTask<String,String,String>(){
+                new AsyncTask<String, String, String>() {
                     @Override
                     protected String doInBackground(String... strings) {
-                        for(Product product : data){
+                        for (Product product : data) {
                             AppLocalDb.db.productDao().insertAll(product);
                         }
                         return "";
@@ -138,7 +119,7 @@ public class ProductModel {
                     @Override
                     protected void onPostExecute(String s) {
                         super.onPostExecute(s);
-                        if (listener!=null)  listener.onComplete();
+                        if (listener != null) listener.onComplete();
                     }
                 }.execute("");
             }
@@ -146,25 +127,50 @@ public class ProductModel {
     }
 
 
-    public LiveData<List<Product>> getAllProducts(){
+    public LiveData<List<Product>> getAllProducts() {
         LiveData<List<Product>> liveData = AppLocalDb.db.productDao().getAll();
         refreshProductList(null);
         return liveData;
     }
 
-
-    Product get_Product(String id){
-        return null;
+    @SuppressLint("StaticFieldLeak")
+    public void addProduct(final Product product, Listener<Boolean> listener) {
+        new AsyncTask<String, String, String>() {
+            @Override
+            protected String doInBackground(String... strings) {
+                AppLocalDb.db.productDao().insertAll(product);
+                return "";
+            }
+        }.execute("");
+        ProductFirebase.addProduct(product, listener);
     }
 
     @SuppressLint("StaticFieldLeak")
     public void updateProduct(Product product, Listener listener) {
-        addProduct(product,listener);
+        new AsyncTask<String, String, String>() {
+            @Override
+            protected String doInBackground(String... strings) {
+                AppLocalDb.db.productDao().insertAll(product);
+                return "";
+            }
+        }.execute("");
+        ProductFirebase.updateProduct(product, listener);
     }
 
-//    void update_Product(Product product){
-//
-//    }
+    @SuppressLint("StaticFieldLeak")
+    public void delete_Product(Product product, Listener listener) {
+        product.isDeleted = true;
+        new AsyncTask<String, String, String>() {
+            @SuppressLint("StaticFieldLeak")
+            @Override
+            protected String doInBackground(String... strings) {
+                AppLocalDb.db.productDao().insertAll(product);              //changing the status object
+                AppLocalDb.db.productDao().delete(product);                 //delete from local DB
 
-    void delete_Product(String id) {}
+                Log.d("TAG", "The item deleted successfully from local DB");
+                return "";
+            }
+        }.execute("");
+        ProductFirebase.deleteProduct(product, listener);                   //delete the item from DB server
+    }
 }
