@@ -30,8 +30,8 @@ public class Product implements Serializable {
 
 
     public Product() {
-        this.id                     = "temp";
-        this.name__Product          = "empty";
+        this.id                     = "default_id";
+        this.name__Product          = "Temp";
         this.carat__Product         = "0";
         this.isChecked__Product     = false;
         this.price__Product         = "0";

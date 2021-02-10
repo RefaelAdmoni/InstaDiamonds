@@ -21,12 +21,7 @@ public class ProductModel {
         void onComplete();
     }
 
-    private ProductModel() {
-//        for (int i=0;i<10;i++) {
-//            Product prd = new Product("name"+i,i+"",i*i+"","",false);
-//            addProduct(prd,null);
-//        }
-    }
+    private ProductModel() {}
 
 //    public void refreshProductList(final CompListener listener){
 //        ProductFirebase.getAllProducts(new Listener<List<Product>>() {

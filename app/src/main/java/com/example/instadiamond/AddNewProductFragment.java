@@ -63,8 +63,7 @@ public class AddNewProductFragment extends Fragment {
     ProductViewModel viewModel;
     ImageView imageView;
 
-    public AddNewProductFragment() {
-        // Required empty public constructor
+    public AddNewProductFragment() {  // Required empty public constructor
     }
 
     @Override
@@ -211,15 +210,15 @@ public class AddNewProductFragment extends Fragment {
 
 
 
-        viewModel.add(newProduct, new ProductModel.Listener<Boolean>() {
-            @Override
-            public void onComplete(Boolean data) {
-                Log.d("TAG", "save new product success");
-                NavController navController = Navigation.findNavController(view);
-                // Back to list
-                navController.navigateUp();
-            }
-        });
+//        viewModel.add(newProduct, new ProductModel.Listener<Boolean>() {
+//            @Override
+//            public void onComplete(Boolean data) {
+//                Log.d("TAG", "save new product success");
+//                NavController navController = Navigation.findNavController(view);
+//                // Back to list
+//                navController.navigateUp();
+//            }
+//        });
 
 
 //        NavController navController = Navigation.findNavController(getView());

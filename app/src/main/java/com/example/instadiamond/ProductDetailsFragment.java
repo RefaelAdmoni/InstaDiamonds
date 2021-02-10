@@ -53,9 +53,6 @@ public class ProductDetailsFragment extends Fragment {
 
         //getting all data from last fragment, and define the product.
         product = ProductDetailsFragmentArgs.fromBundle(getArguments()).getProduct();
-//        if (product != null){           //option check again
-//            update_dispaly();
-//        }
 
         deleteBtn = view.findViewById(R.id.delete_btn_productDetailsFragment);
         editBtn = view.findViewById(R.id.Edit_btn_productDetailsFragment);
@@ -105,15 +102,15 @@ public class ProductDetailsFragment extends Fragment {
         return view;
     }
 
-    private void update_dispaly() {
-        name.setText(product.name__Product);
-        carat.setText(product.carat__Product +"");
-
-        if (product.imageUrl__Product != null && product.imageUrl__Product != ""){
-            Picasso.get().load(product.imageUrl__Product).into(image);
-        } else {
-            image.setImageResource(R.drawable.diamond_ring);
-        }
-
-    }
+//    private void update_dispaly() {
+//        name.setText(product.name__Product);
+//        carat.setText(product.carat__Product +"");
+//
+//        if (product.imageUrl__Product != null && product.imageUrl__Product != ""){
+//            Picasso.get().load(product.imageUrl__Product).into(image);
+//        } else {
+//            image.setImageResource(R.drawable.diamond_ring);
+//        }
+//
+//    }
 }

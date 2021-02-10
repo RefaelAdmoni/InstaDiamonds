@@ -124,7 +124,7 @@ public class ProductFirebase {
 
     private static Product factory(Map<String, Object> json){
         Product product = new Product();
-        product.id = (String) Objects.requireNonNull(json.get("id"));
+        product.id = (String)/* Objects.requireNonNull*/(json.get("id"));
         product.name__Product = (String)json.get("name__Product");
         product.carat__Product = (String)json.get("carat__Product");
         product.price__Product = (String)json.get("price__Product");
