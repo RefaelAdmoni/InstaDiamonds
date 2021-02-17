@@ -136,8 +136,8 @@ public class EditProductFragment extends Fragment {
             product.setPrice__Product(price);
 
             java.util.Date d = new Date();
-            if (imageBitmap != null) {
-                StoreModel.uploadImage(imageBitmap, "my_photo_" + d.getTime(), new StoreModel.Listener() {
+            if (takePhotoBtn_isClicked && imageBitmap != null) {
+                StoreModel.uploadImage(imageBitmap, "my_photo_" + name + d.getTime(), new StoreModel.Listener() {
                     @Override
                     public void onSuccess(String url) {
                         Log.d("TAG", "url: " + url);
@@ -145,8 +145,7 @@ public class EditProductFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFail() {
-                    }
+                    public void onFail() { }
                 });
             }
 
@@ -185,11 +184,13 @@ public class EditProductFragment extends Fragment {
         }
     }
 
+
     public static Bitmap rotateImage(Bitmap source) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
-                matrix, true);
+        return  source;
+//        Matrix matrix = new Matrix();
+//        matrix.postRotate(90);
+//        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+//                matrix, true);
     }
 
 

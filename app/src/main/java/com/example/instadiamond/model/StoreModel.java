@@ -40,9 +40,12 @@ public class StoreModel {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                imagesRef.getDownloadUrl().addOnSuccessListener((OnSuccessListener) (uri) -> {
-                    Uri downloadUrl = (Uri) uri;
-                    listener.onSuccess(downloadUrl.toString());
+                imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Uri downloadUrl = uri;
+                        listener.onSuccess(downloadUrl.toString());
+                    }
                 });
             }
         });

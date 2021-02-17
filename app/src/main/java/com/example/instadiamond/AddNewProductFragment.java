@@ -3,6 +3,7 @@ package com.example.instadiamond;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -46,15 +47,14 @@ import static android.app.Activity.RESULT_OK;
 
 public class AddNewProductFragment extends Fragment {
     final static String PRODUCT_COLLECTION = "products";
+    private static String imageUrl;
 
     Product newProduct;
     View view;
     TextView nameTv;
     TextView imageUrl_Tv;
-    //    TextView idTv;
     TextView caratTv;
     TextView priceTv;
-    //    CheckBox checkBox;
     Button takePhotoBtn;
     Boolean btnTakePhoto_isClicked;
     Bitmap imageBitmap;
@@ -149,6 +149,7 @@ public class AddNewProductFragment extends Fragment {
             Bundle extras = data.getExtras();
             imageBitmap = rotateImage((Bitmap) extras.get("data"));
             imageView.setImageBitmap(imageBitmap);
+
         }
     }
 
@@ -172,43 +173,38 @@ public class AddNewProductFragment extends Fragment {
 
 
         if (!btnTakePhoto_isClicked) {
+            imageUrl = "https://firebasestorage.googleapis.com/v0/b/intadiamond.appspot.com/o/images%2Fdiamond_ring.png?alt=media&token=13c173be-03a5-4b0b-944c-18c741020744";
             imageView.setImageResource(R.drawable.diamond_ring);
         }
 
-
         java.util.Date d = new Date();
-//        if (newProduct.imageUrl__Product.equals("")) {
-            StoreModel.uploadImage(imageBitmap, "my_photo_" + d.getTime(), new StoreModel.Listener() {
-                String uid;
-
+        if (imageBitmap != null) {
+            StoreModel.uploadImage(imageBitmap, "my_photo_" + name + d.getTime(), new StoreModel.Listener() {
                 @Override
                 public void onSuccess(String url) {
                     Log.d("TAG", "url: " + url);
-                    if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                        uid = (FirebaseAuth.getInstance().getCurrentUser().getUid());
-                    }
-
-                    newProduct = new Product("temp", name, carat, price, url, false, uid);
-
-
-                    ProductModel.instance.addProduct(newProduct, new ProductModel.Listener<Boolean>() {
-                        @Override
-                        public void onComplete(Boolean data) {
-                            NavController navCtrl = Navigation.findNavController(view);
-                            NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
-                            navCtrl.navigate(direction);
-                        }
-                    });
+                    AddNewProductFragment.updateURL(url);
                 }
-
                 @Override
-                public void onFail() {
-                }
+                public void onFail() { }
             });
-//        }
+        }
 
+        String uid = "";
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            uid = (FirebaseAuth.getInstance().getCurrentUser().getUid());
+        }
 
+        newProduct = new Product("temp", name, carat, price, imageUrl, false, uid);
 
+        ProductModel.instance.addProduct(newProduct, new ProductModel.Listener<Boolean>() {
+            @Override
+            public void onComplete(Boolean data) {
+                NavController navCtrl = Navigation.findNavController(view);
+                NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
+                navCtrl.navigate(direction);
+            }
+        });
 
 //        viewModel.add(newProduct, new ProductModel.Listener<Boolean>() {
 //            @Override
@@ -219,60 +215,8 @@ public class AddNewProductFragment extends Fragment {
 //                navController.navigateUp();
 //            }
 //        });
-
-
-//        NavController navController = Navigation.findNavController(getView());
-//        navController.navigateUp();
-
-
-//        viewModel.add(jewelry, new JewelryModel.Listener<Boolean>() {
-//            @Override
-//            public void onComplete(Boolean data) {
-//                Log.d("TAG", "save new jewelry success");
-//                NavController navController = Navigation.findNavController(view);
-//                // Back to list
-//                navController.navigateUp();
-//            }
-//        });
-
-//        if (imageBitmap != null) {
-//            StorageModel.uploadImage(imageBitmap, "my_photo" + d.getTime(), new StorageModel.Listener() {
-//                @Override
-//                public void onSuccess(String url) {
-//                    Log.d("TAG", "image url = " + url);
-//
-//                    // create object
-//                    Jewelry jewelry = new Jewelry(name,name,type,cost,ifSold,url);
-//                    viewModel.add(jewelry, new JewelryModel.Listener<Boolean>() {
-//                        @Override
-//                        public void onComplete(Boolean data) {
-//                            Log.d("TAG", "save new jewelry success");
-//                            NavController navController = Navigation.findNavController(view);
-//                            NavDirections direction = JewelryListFragmentDirections.actionGlobalJewelryListFragment();
-//                            navController.navigate(direction);
-//                        }
-//                    });
-//                }
-//
-//                @Override
-//                public void onFail() {
-//                    Log.d("TAG", "image url upload failed ");
-//                }
-//            });
-//        } else {
-//            // create object
-//            Jewelry jewelry = new Jewelry(name,name,type,cost,ifSold,null);
-//            viewModel.add(jewelry, new JewelryModel.Listener<Boolean>() {
-//                @Override
-//                public void onComplete(Boolean data) {
-//                    Log.d("TAG", "save new jewelry success");
-//                    NavController navController = Navigation.findNavController(view);
-//                    // Back to list
-//                    navController.navigateUp();
-//                }
-//            });
-//        }
-
-
+    }
+    private static void updateURL(String url) {
+        imageUrl = url;
     }
 }

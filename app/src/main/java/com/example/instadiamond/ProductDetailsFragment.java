@@ -25,6 +25,7 @@ import com.squareup.picasso.Picasso;
 public class ProductDetailsFragment extends Fragment {
     private Product product;
     TextView name,carat,price;
+    TextView infoTv,SellerTv,SellerByTv;
     Button closeBtn, editBtn, deleteBtn;
     FirebaseAuth firebaseAuth;
     ImageView image;
@@ -50,9 +51,25 @@ public class ProductDetailsFragment extends Fragment {
         price = view.findViewById(R.id.product_details_price_tv);
         image = view.findViewById(R.id.product_details_imageView);
 
+        //seller details
+        infoTv = view.findViewById(R.id.product_details_titleInfo_tv);
+        SellerByTv = view.findViewById(R.id.product_details_SellerBy_tv);
+        SellerTv = view.findViewById(R.id.product_details_Seller_tv);
 
         //getting all data from last fragment, and define the product.
         product = ProductDetailsFragmentArgs.fromBundle(getArguments()).getProduct();
+
+        name.setText(product.getName__Product());
+        carat.setText(product.getCarat__Product());
+        price.setText(product.getPrice__Product());
+        SellerTv.setText(product.getSellerId__Product());
+
+        if (product.imageUrl__Product != null && product.imageUrl__Product != "") {
+            Picasso.get().load(product.imageUrl__Product).into(image);
+        } else {
+            image.setImageResource(R.drawable.diamond_ring);
+        }
+
 
         deleteBtn = view.findViewById(R.id.delete_btn_productDetailsFragment);
         editBtn = view.findViewById(R.id.Edit_btn_productDetailsFragment);
@@ -63,7 +80,9 @@ public class ProductDetailsFragment extends Fragment {
         if (!firebaseAuth.getCurrentUser().getUid().equals(product.getSellerId__Product())) {
             deleteBtn.setVisibility(view.GONE);
             editBtn.setVisibility(view.GONE);
-
+            infoTv.setVisibility(view.getVisibility());
+            SellerByTv.setVisibility(view.getVisibility());
+            SellerTv.setVisibility(view.getVisibility());
         }
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -101,16 +120,4 @@ public class ProductDetailsFragment extends Fragment {
         });
         return view;
     }
-
-//    private void update_dispaly() {
-//        name.setText(product.name__Product);
-//        carat.setText(product.carat__Product +"");
-//
-//        if (product.imageUrl__Product != null && product.imageUrl__Product != ""){
-//            Picasso.get().load(product.imageUrl__Product).into(image);
-//        } else {
-//            image.setImageResource(R.drawable.diamond_ring);
-//        }
-//
-//    }
 }
