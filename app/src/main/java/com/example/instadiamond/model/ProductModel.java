@@ -23,79 +23,6 @@ public class ProductModel {
 
     private ProductModel() {}
 
-//    public void refreshProductList(final CompListener listener){
-//        ProductFirebase.getAllProducts(new Listener<List<Product>>() {
-//            @SuppressLint("StaticFieldLeak")
-//            @Override
-//            public void onComplete(final List<Product> data) {
-//                new AsyncTask<String,String,String>(){
-//                    @Override
-//                    protected String doInBackground(String... strings) {
-//                        for (Product p : data){
-//                            AppLocalDb.db.productDao().insertAll(p);
-//                        }
-//                        return "";
-//                    }
-//
-//                    @Override
-//                    protected void onPostExecute(String s) {
-//                        super.onPostExecute(s);
-//                        if (listener != null) listener.onComplete();
-//                    }
-//                }.execute("");
-//            }
-//        });
-//    }
-
-//    public void refreshProductList(final CompListener listener){
-//        long lastUpdated = MyApplication.context.getSharedPreferences("TAG",MODE_PRIVATE).getLong("ProductsLastUpdateDate",0);
-//        ProductFirebase.getAllProductsSince(lastUpdated,new Listener<List<Product>>() {
-//            @SuppressLint("StaticFieldLeak")
-//            @Override
-//            public void onComplete(final List<Product> data) {
-//                new AsyncTask<String,String,String>(){
-//                    @Override
-//                    protected String doInBackground(String... strings) {
-//                        long lastUpdated = 0;
-//                        for(Product p : data){
-//                            AppLocalDb.db.productDao().insertAll(p);
-//                            if (p.lastUpdated > lastUpdated) lastUpdated = p.lastUpdated;
-//                        }
-//                        SharedPreferences.Editor edit = MyApplication.context.getSharedPreferences("TAG", MODE_PRIVATE).edit();
-//                        edit.putLong("ProductsLastUpdateDate",lastUpdated);
-//                        edit.commit();
-//                        return "";
-//                    }
-//                    @Override
-//                    protected void onPostExecute(String s) {
-//                        super.onPostExecute(s);
-//                        if (listener!=null)  listener.onComplete();
-//                    }
-//                }.execute("");
-//            }
-//        });
-//    }
-
-//    public void refreshProductList(final CompListener listener){
-//        //get local last update data
-//        final SharedPreferences sp = MyApplication.context.getSharedPreferences("TAG",MODE_PRIVATE);
-//        long lastUpdated = sp.getLong("ProductsLastUpdate",0);
-//
-//        //get all updated record from firebase from the last update date
-//        ProductFirebase.getAllProducts(lastUpdated, new ProductFirebase.getAllProducts();
-//                    SharedPreferences.Editor edit = MyApplication.context.getSharedPreferences("ProductsLastUpdate",);
-//                    edit.putLong("ProductsLastUpdate",lastUpdated);
-//                    edit.commit();
-//                    return "";
-//                }
-//                @Override
-//                    protected void onPostExecute(String s) {
-//                        super.onPostExecute(s);
-//                        if (listener != null) listener.onComplete();
-//                    }
-//                }.execute("");
-//        });
-//    }
 
     public void refreshProductList(final CompListener listener) {
         ProductFirebase.getAllProducts(new Listener<List<Product>>() {
@@ -154,7 +81,7 @@ public class ProductModel {
 
     @SuppressLint("StaticFieldLeak")
     public void delete_Product(Product product, Listener listener) {
-        product.isDeleted = true;
+        product.setIsDeleted(true);
         new AsyncTask<String, String, String>() {
             @SuppressLint("StaticFieldLeak")
             @Override

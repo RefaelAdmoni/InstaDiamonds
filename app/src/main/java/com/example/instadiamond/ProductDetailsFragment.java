@@ -57,7 +57,6 @@ public class ProductDetailsFragment extends Fragment {
         name.setText(product.getName__Product());
         carat.setText(product.getCarat__Product());
         price.setText(product.getPrice__Product());
-        SellerTv.setText(product.getSellerId__Product());
 
         if (product.imageUrl__Product != null && product.imageUrl__Product != "") {
             Picasso.get().load(product.imageUrl__Product).into(image);
@@ -75,9 +74,6 @@ public class ProductDetailsFragment extends Fragment {
         if (!firebaseAuth.getCurrentUser().getUid().equals(product.getSellerId__Product())) {
             deleteBtn.setVisibility(view.GONE);
             editBtn.setVisibility(view.GONE);
-            infoTv.setVisibility(view.getVisibility());
-            SellerByTv.setVisibility(view.getVisibility());
-            SellerTv.setVisibility(view.getVisibility());
         }
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {

@@ -62,6 +62,7 @@ public class AddNewProductFragment extends Fragment {
     Button saveBtn;
     ProductViewModel viewModel;
     ImageView imageView;
+    String uid;
 
     public AddNewProductFragment() {  // Required empty public constructor
     }
@@ -172,10 +173,11 @@ public class AddNewProductFragment extends Fragment {
 //        final Boolean checked = false;
 
 
-        if (!btnTakePhoto_isClicked) {
-            imageUrl = "https://firebasestorage.googleapis.com/v0/b/intadiamond.appspot.com/o/images%2Fdiamond_ring.png?alt=media&token=13c173be-03a5-4b0b-944c-18c741020744";
-            imageView.setImageResource(R.drawable.diamond_ring);
+        imageUrl = null;
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            uid = (FirebaseAuth.getInstance().getCurrentUser().getUid());
         }
+
 
         java.util.Date d = new Date();
         if (imageBitmap != null) {
@@ -183,28 +185,35 @@ public class AddNewProductFragment extends Fragment {
                 @Override
                 public void onSuccess(String url) {
                     Log.d("TAG", "url: " + url);
-                    AddNewProductFragment.updateURL(url);
+
+                    newProduct = new Product("temp", name, carat, price, url, false, uid);
+
+                    ProductModel.instance.addProduct(newProduct, new ProductModel.Listener<Boolean>() {
+                        @Override
+                        public void onComplete(Boolean data) {
+                            NavController navCtrl = Navigation.findNavController(view);
+                            //NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
+                            navCtrl.navigateUp();
+                        }
+                    });
                 }
                 @Override
                 public void onFail() { }
             });
+        } else {
+            newProduct = new Product("temp", name, carat, price, null, false, uid);
+
+            ProductModel.instance.addProduct(newProduct, new ProductModel.Listener<Boolean>() {
+                @Override
+                public void onComplete(Boolean data) {
+                    NavController navCtrl = Navigation.findNavController(view);
+                    //NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
+                    navCtrl.navigateUp();
+                }
+            });
         }
 
-        String uid = "";
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            uid = (FirebaseAuth.getInstance().getCurrentUser().getUid());
-        }
 
-        newProduct = new Product("temp", name, carat, price, imageUrl, false, uid);
-
-        ProductModel.instance.addProduct(newProduct, new ProductModel.Listener<Boolean>() {
-            @Override
-            public void onComplete(Boolean data) {
-                NavController navCtrl = Navigation.findNavController(view);
-                NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
-                navCtrl.navigate(direction);
-            }
-        });
 
 //        viewModel.add(newProduct, new ProductModel.Listener<Boolean>() {
 //            @Override

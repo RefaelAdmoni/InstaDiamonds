@@ -104,16 +104,19 @@ public class ProductFirebase {
 
 
     public static void deleteProduct (Product product, final ProductModel.Listener<Boolean> listener) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection(PRODUCT_COLLECTION).document(product.id).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (listener!=null)
-                { listener.onComplete(task.isSuccessful()); }
-
-                Log.d("TAG", "The item deleted successfully from DB");
-            }
-        });
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        product.setIsDeleted(true);
+        updateProduct(product,listener);
+//        db.collection(PRODUCT_COLLECTION).document(product.id).
+//                delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (listener!=null)
+//                { listener.onComplete(task.isSuccessful()); }
+//
+//                Log.d("TAG", "The item deleted successfully from DB");
+//            }
+//        });
         ProductModel.instance.refreshProductList(null);
     }
 

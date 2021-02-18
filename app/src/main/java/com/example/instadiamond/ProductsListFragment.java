@@ -96,9 +96,7 @@ public class ProductsListFragment extends Fragment {
         });
 
         liveData = viewModel.getData();
-        if (liveData == null) {
 
-        }
         liveData.observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
@@ -166,7 +164,7 @@ public class ProductsListFragment extends Fragment {
             name.setText(prd.name__Product);
             carat.setText(prd.carat__Product);
             price.setText(prd.price__Product);
-            if (prd.imageUrl__Product != null && prd.imageUrl__Product != ""){
+            if (prd.imageUrl__Product != null){
                 Picasso.get().load(prd.imageUrl__Product).into(image);
             } else {
                 image.setImageResource(R.drawable.diamond_ring);

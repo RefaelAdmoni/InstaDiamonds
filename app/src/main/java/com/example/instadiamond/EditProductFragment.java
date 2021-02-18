@@ -136,28 +136,40 @@ public class EditProductFragment extends Fragment {
             product.setPrice__Product(price);
 
             java.util.Date d = new Date();
-            if (takePhotoBtn_isClicked && imageBitmap != null) {
+            if (imageBitmap != null) {
                 StoreModel.uploadImage(imageBitmap, "my_photo_" + name + d.getTime(), new StoreModel.Listener() {
                     @Override
                     public void onSuccess(String url) {
                         Log.d("TAG", "url: " + url);
                         product.setImageUrl__Product(url);
+
+                        ProductModel.instance.updateProduct(product, new ProductModel.Listener<Boolean>() {
+                            @Override
+                            public void onComplete(Boolean data) {
+                                NavController navCtrl = Navigation.findNavController(view);
+                                //NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
+                                navCtrl.navigateUp();
+                            }
+                        });
+
                     }
 
                     @Override
                     public void onFail() { }
                 });
+            } else  {
+                ProductModel.instance.updateProduct(product, new ProductModel.Listener<Boolean>() {
+                    @Override
+                    public void onComplete(Boolean data) {
+                        NavController navCtrl = Navigation.findNavController(view);
+                        //NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
+                        navCtrl.navigateUp();
+                    }
+                });
+
             }
 
 
-            ProductModel.instance.updateProduct(product, new ProductModel.Listener<Boolean>() {
-                @Override
-                public void onComplete(Boolean data) {
-                    NavController navCtrl = Navigation.findNavController(view);
-                    NavDirections direction = ProductsListFragmentDirections.actionGlobalProductsListFragment();
-                    navCtrl.navigate(direction);
-                }
-            });
 
         }
 

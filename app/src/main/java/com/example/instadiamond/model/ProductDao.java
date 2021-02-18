@@ -11,7 +11,7 @@ import java.util.List;
 
 @Dao
 public interface ProductDao {                      //DAO = Data Access Object
-    @Query("select * from Product")
+    @Query("select * from Product Where isDeleted=0")
     LiveData<List<Product>> getAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

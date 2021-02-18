@@ -50,6 +50,10 @@ public class Product implements Serializable {
         this.sellerId__Product      = pid;
     }
 
+//    public boolean isDeleted() {
+//        return isDeleted;
+//    }
+
     @NonNull
     public String getId__Product() {
         return id;
@@ -99,11 +103,11 @@ public class Product implements Serializable {
         this.imageUrl__Product = imageUrl__Product;
     }
 
-    public Boolean getDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setIsDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -115,4 +119,12 @@ public class Product implements Serializable {
         this.sellerId__Product = sellerId__Product;
     }
 
+    @NonNull
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@NonNull String id) {
+        this.id = id;
+    }
 }
