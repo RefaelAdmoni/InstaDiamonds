@@ -75,11 +75,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="60dp"
         android:onClick="@id/editProductFragment"
         android:text="Edit"
         app:layout_constraintBottom_toTopOf="@+id/product_details_close_btn"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/delete_btn_productDetailsFragment"
@@ -125,43 +127,5 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/product_details_SellerBy_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="70dp"
-        android:text="Seller by: "
-        android:textSize="18sp"
-        android:textStyle="italic"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/product_details_close_btn"
-        app:layout_constraintStart_toStartOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/product_details_Seller_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/product_details_SellerBy_tv"
-        app:layout_constraintStart_toEndOf="@+id/product_details_SellerBy_tv"
-        app:layout_constraintTop_toTopOf="@+id/product_details_SellerBy_tv" />
-
-    <TextView
-        android:id="@+id/product_details_titleInfo_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="For more information"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/product_details_SellerBy_tv"
-        app:layout_constraintStart_toStartOf="@+id/product_details_SellerBy_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

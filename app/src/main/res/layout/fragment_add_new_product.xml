@@ -65,7 +65,7 @@
         android:id="@+id/addproduct_save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:text="Save!!!!!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.558"
@@ -74,8 +74,8 @@
 
     <TextView
         android:id="@+id/addproduct_title_tv"
-        android:layout_width="363dp"
-        android:layout_height="210dp"
+        android:layout_width="373dp"
+        android:layout_height="112dp"
         android:layout_marginStart="158dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="157dp"
@@ -83,7 +83,7 @@
         android:gravity="center"
         android:text="New item on the way..."
         android:textColor="#7C3333"
-        android:textSize="60sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"

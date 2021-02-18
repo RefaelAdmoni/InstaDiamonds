@@ -51,11 +51,6 @@ public class ProductDetailsFragment extends Fragment {
         price = view.findViewById(R.id.product_details_price_tv);
         image = view.findViewById(R.id.product_details_imageView);
 
-        //seller details
-        infoTv = view.findViewById(R.id.product_details_titleInfo_tv);
-        SellerByTv = view.findViewById(R.id.product_details_SellerBy_tv);
-        SellerTv = view.findViewById(R.id.product_details_Seller_tv);
-
         //getting all data from last fragment, and define the product.
         product = ProductDetailsFragmentArgs.fromBundle(getArguments()).getProduct();
 

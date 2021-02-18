@@ -30,7 +30,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
         android:fontFamily="@font/aclonica"
@@ -41,9 +41,9 @@
         android:textColorHint="#DDD0D0"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/takPhoto_Btn_RegisterUserActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/title_RegisterUserActivity" />
 
     <EditText
         android:id="@+id/Password_RegisterUserActivity"
@@ -112,30 +112,5 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registered_tv_registerUserActivity" />
-
-    <ImageView
-        android:id="@+id/image_ImageView_RegisterUserActivity"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="114dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="115dp"
-        app:layout_constraintDimensionRatio="4:3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_RegisterUserActivity"
-        app:srcCompat="@drawable/man_icon" />
-
-    <Button
-        android:id="@+id/takPhoto_Btn_RegisterUserActivity"
-        android:layout_width="225dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="#726E4343"
-        android:fontFamily="@font/emblema_one"
-        android:text="Take photo"
-        app:layout_constraintEnd_toEndOf="@+id/image_ImageView_RegisterUserActivity"
-        app:layout_constraintStart_toStartOf="@+id/image_ImageView_RegisterUserActivity"
-        app:layout_constraintTop_toBottomOf="@+id/image_ImageView_RegisterUserActivity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
